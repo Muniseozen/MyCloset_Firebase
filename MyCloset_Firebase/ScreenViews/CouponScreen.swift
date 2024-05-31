@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CouponsScreen: View {
+struct CouponScreen: View {
     var body: some View {
         Text("Coupons")
     }
 }
 
 #Preview {
-    CouponsScreen()
+    CouponScreen()
 }

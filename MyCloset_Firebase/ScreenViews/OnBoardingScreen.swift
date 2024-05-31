@@ -17,18 +17,17 @@ struct OnBoardingStep {
 
 // オンボーディングステップの配列
 private let onBoardingSteps = [
-    OnBoardingStep(image: "onBoarding1", title: "Step 1", description1: "まずはアイテムを",description2: "見つける！"),
-    OnBoardingStep(image: "onBoarding2", title: "", description1: "Welcome to the app",description2: "Get started with the app"),
-    OnBoardingStep(image: "onBoarding3", title: "Discover", description1: "Discover new features",description2: "Get started with the app"),
-    OnBoardingStep(image: "onBoarding4", title: "Discover2", description1: "Get started with the app",description2: "Get started with the app"),
-    OnBoardingStep(image: "onBoarding5", title: "Get Started", description1: "Get started with the app",description2: "Get started with the app")
+    OnBoardingStep(image: "onBoarding1", title: "Step 1", description1: "まずはアイテムを", description2: "見つける！"),
+    OnBoardingStep(image: "onBoarding2", title: "Step 2", description1: "Welcome to the app", description2: "Get started with the app"),
+    OnBoardingStep(image: "onBoarding3", title: "Step 3", description1: "Discover new features", description2: "Get started with the app"),
+    OnBoardingStep(image: "onBoarding4", title: "Step 4", description1: "Get started with the app", description2: "Get started with the app"),
+    OnBoardingStep(image: "onBoarding5", title: "", description1: "Get started with the app", description2: "Get started with the app")
 ]
 
 // オンボーディング画面のView
 struct OnBoardingScreen: View {
     // 現在のステップを追跡するためのState変数
     @State private var currentStep = 0
-    @State private var showSignUpView = false
     
     init() {
         // UIScrollViewの跳ね返りを無効にする
@@ -41,10 +40,13 @@ struct OnBoardingScreen: View {
                 Spacer()
                 // スキップボタン
                 Button(action: {
-                    self.currentStep = onBoardingSteps.count - 1 // 最後のステップにジャンプ
+                    withAnimation {
+                        self.currentStep = onBoardingSteps.count - 1 // 最後のステップにジャンプ
+                    }
                 }) {
                     Text("スキップ")
-                        .padding(.horizontal,12)
+                        .font(.custom("Noto Sans JP SemiBold", size: 12))
+                        .padding(.horizontal, 12)
                         .foregroundColor(.gray)
                 }
             }
@@ -55,7 +57,7 @@ struct OnBoardingScreen: View {
                     VStack {
                         // タイトル表示
                         Text(onBoardingSteps[index].title)
-                            .font(.custom("Noto Sans JP Bold", size: 32))
+                            .font(.custom("Noto Sans JP Bold", size: 30))
                             .foregroundColor(.myBlack)
                             .padding()
                         
@@ -66,16 +68,15 @@ struct OnBoardingScreen: View {
                             .frame(width: 300, height: 300)
                         
                         Spacer()
-                        VStack{
+                        VStack {
                             // 説明文表示1
                             Text(onBoardingSteps[index].description1)
-        
+                            
                             // 説明文表示2
                             Text(onBoardingSteps[index].description2)
-                      
                         }
                         .multilineTextAlignment(.center)
-                        .font(.custom("Noto Sans JP Medium", size: 30))
+                        .font(.custom("Noto Sans JP Medium", size: 28))
                         .foregroundColor(.myBlack)
                         .padding()
                         Spacer()
@@ -84,19 +85,18 @@ struct OnBoardingScreen: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // インデックス表示を非表示に設定
-          
             
             // ページインジケーター
             HStack {
                 ForEach(0..<onBoardingSteps.count, id: \.self) { index in
                     if index == currentStep {
                         Rectangle()
-                            .frame(width: 28, height: 8)
+                            .frame(width: 32, height: 6)
                             .cornerRadius(8)
                             .foregroundColor(.primaryMedium)
                     } else {
                         Circle()
-                            .frame(width: 8, height: 8)
+                            .frame(width: 6, height: 6)
                             .foregroundColor(.gray)
                     }
                 }
@@ -106,14 +106,16 @@ struct OnBoardingScreen: View {
             // 次へボタンまたは今すぐ始めるボタン
             Button(action: {
                 // ボタンが押されたときのアクション
-                if self.currentStep < onBoardingSteps.count - 1 {
-                    //現在のステップがオンボーディングステップの最後でない場合
-                    self.currentStep += 1 // 次のステップへ進む
-                } else {
-                    self.showSignUpView = true
+                withAnimation {
+                    if self.currentStep < onBoardingSteps.count - 1 {
+                        //現在のステップがオンボーディングステップの最後でない場合
+                        self.currentStep += 1 // 次のステップへ進む
+                    } else {
+                        SignupView()
+                    }
                 }
             }) {
-                HStack(spacing: 12){
+                HStack(spacing: 12) {
                     Text(currentStep < onBoardingSteps.count - 1 ? "次へ" : "今すぐ始める！")
                     Image(systemName: "arrow.right")
                 }

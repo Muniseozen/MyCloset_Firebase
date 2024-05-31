@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct ratingView: View {
+    var rating: Int
+    var ratingCount: Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 4) {
+            ForEach(0..<5) { index in
+                Image(systemName: index < rating ? "star.fill" : "star")
+                    .frame(width: 16, height: 16)
+                    .foregroundColor(.yellow)
+            }
+            Text("(\(ratingCount))")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
     }
-}
-
-#Preview {
-    ratingView()
 }

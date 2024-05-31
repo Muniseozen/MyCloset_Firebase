@@ -8,10 +8,24 @@
 import SwiftUI
 
 struct ProfileScreen: View {
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        NavigationView {
+            VStack(spacing: 0) {
+                ProfileScreenUpNavBar(usernamelink: "@rina_chisato")
+                MainProfileHeader(name: "Chisato Rina", rating: 4, ratingCount: 12, profileImageName: "profilePic1")
+                Divider()
+                ScrollView {
+                   
+                }
+                .padding()
+            }
+
+                    }
+                }
+            }
+
+
 
 #Preview {
     ProfileScreen()

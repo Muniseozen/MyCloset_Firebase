@@ -7,12 +7,30 @@
 
 import SwiftUI
 
-struct HomeUpNavBar: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct NotificationButton: View {
+    @Binding var hasNotification: Bool
 
-#Preview {
-    HomeUpNavBar()
+    var body: some View {
+        Button(action: {
+            print("Notification tapped")
+        }) {
+            VStack(alignment: .center) {
+                if hasNotification {
+                    Image(systemName: "bell.badge")
+                        .font(.title3)
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.secondaryMain, .primaryDark)
+                       
+                } else {
+                    Image(systemName: "bell")
+                        .foregroundColor(.primaryDark)
+                        .font(.title3)
+                       
+                }
+                Text("通知")
+                    .font(.custom("Noto Sans JP", size: 9))
+                    .foregroundColor(.primaryDark)
+            }
+        }
+    }
 }

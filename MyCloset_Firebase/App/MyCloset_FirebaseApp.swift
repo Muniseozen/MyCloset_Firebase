@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MyCloset_FirebaseApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+            }
         }
     }
 }
+

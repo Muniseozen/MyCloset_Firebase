@@ -7,12 +7,25 @@
 
 import SwiftUI
 
-struct profileScreenUpNavBar: View {
+struct ProfileScreenUpNavBar: View {
+    var usernamelink: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text(usernamelink)
+            Image("share")
+            Spacer()
+            NavigationLink(destination: SettingsScreen()) {
+                Image(systemName: "slider.horizontal.3")
+                    .font(.title3)
+            }
+        }
+        .foregroundColor(.black)
+        .padding()
     }
 }
 
+
 #Preview {
-    profileScreenUpNavBar()
+    ProfileScreenUpNavBar(usernamelink: "@rina_chisato")
 }
