@@ -11,15 +11,15 @@ struct productView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                NavigationLink(destination: Text("Product Detail View")) {
+                NavigationLink(destination: ProductDetailsView()) {
                     ZStack(alignment: .topLeading) {
                         GeometryReader { innerGeometry in
                             Image("sweatshirt")
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
+                              
                                 .frame(width: min(innerGeometry.size.width * 1, 180))
                         }
-                        .frame(height: 220) // Fixed height for the container
+                      
 
                         VStack {
                             HStack {

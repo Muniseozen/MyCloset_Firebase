@@ -29,7 +29,7 @@ struct listView: View {
                 .frame(maxWidth: .infinity, minHeight: 48, alignment: .center)
                 
             }
-            Divider()
+ 
             .buttonStyle(PlainButtonStyle()) // デフォルトのボタンスタイルを無効にしてリンクのように見せる
         }
         .background(Color.white)

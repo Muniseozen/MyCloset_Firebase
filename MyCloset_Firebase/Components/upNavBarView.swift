@@ -14,6 +14,7 @@ struct upNavBarView: View {
     var body: some View {
         VStack {
             HStack {
+                
                 Button(action: {
                     presentationMode.wrappedValue.dismiss() // Action to go back to the previous page
                 }) {

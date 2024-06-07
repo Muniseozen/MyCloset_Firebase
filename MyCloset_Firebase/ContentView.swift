@@ -35,9 +35,12 @@ struct ContentView: View {
                     .toolbar(.hidden, for: .tabBar)
             }
             CustomTabBar(activeTab: $activeTab)
+            
         }
+      
     }
 }
+
     
 
 struct ContentView_Previews: PreviewProvider {
